@@ -375,7 +375,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query23);
         db.execSQL(query24);
         //Calling to all the methods
-        addCourses();
+       /* addCourses();
         addNetworkSem1();
         addNetworkSem2();
         addNetworkSem3();
@@ -399,7 +399,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         addSoftwareSem3();
         addSoftwareSem4();
         addSoftwareSem5();
-        addSoftwareSem6();
+        addSoftwareSem6();*/
 
     }
 
@@ -460,16 +460,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Inserting courses in table
     public void addCourses() {
+        SQLiteDatabase db = getWritableDatabase();
         for (int i = 0; i < arrcourses.length; i++) {
             ContentValues values = new ContentValues();
             values.put(COURSE_NAME, arrcourses[i]);
-            SQLiteDatabase db = getWritableDatabase();
             try {
                 db.insertOrThrow(TABLE_COURSES, null, values);
             } catch (SQLiteConstraintException e) {
             }
-            db.close();
+
         }
+        db.close();
     }
 
     public void addNetworkSem1() {
